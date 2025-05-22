@@ -1,8 +1,21 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 
 public class PSSCalculator {
 	public static final int MAX_ROOM_SIZE = 5;
@@ -179,6 +192,15 @@ public class PSSCalculator {
 			JFrame frame = createMainFrame();
 			JDialog dialog = createMainDialog(frame);
 			applyFontToContainer(dialog, new Font("Arial", Font.PLAIN, 18));
+			
+			dialog.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosed(WindowEvent e) {
+					frame.dispose();
+					System.exit(0);
+				}
+			});
+
 			dialog.setVisible(true);
 		});
 	}
